@@ -1,0 +1,77 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <title>New Recipe</title>
+</head>
+<body class="bg-light bg-gradient">
+    <div class="bg-dark bg-gradient mb-5">
+        <div class="d-flex flex-row justify-content-between bg-warning bg-gradient   mb-5">
+            <img class="me-3" height = 80px src="{{url_for('static', filename='Glencairn-glass.svg')}}" alt="dram"/>
+            <div>
+                <h1 class="text-dark mt-3">Whiskey Log</h1>
+            </div>
+            <div>
+                <a class="m-3 text-bold btn btn-outline-dark fw-bold" href="/whiskeys/{id}">Home</a>
+                <a class="m-3 text-bold btn btn-outline-dark fw-bold" href="/logout">Logout</a>
+            </div>
+        </div>
+    </div>
+    <div class="p-4">
+        <div class="container bg-dark text-light col-4 p-3 border border-warning border-3 rounded">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <p class="text-danger">{{message}}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <form action="/update_whiskey" method = "POST">
+                <input type="hidden" name="user_id" value="{{session.id}}">
+                <input type="hidden" name="whiskey_id" value="{{whiskey.id}}">
+                <label class="form-label" for="name">Whiskey Name</label>
+                <input class="form-control" type="text" name="name" id="name" value="{{whiskey.name}}">
+
+                <label class="form-label" for="distiller">Distiller</label>
+                <input type="text" class="form-control" name="distiller" id="distiller" value="{{whiskey.distiller}}">
+
+                <label class="form-label" for="malt">Single Malt or Blended?</label>
+                <div>
+                    <input  type="radio" name="malt" id="single" value="single" required>
+                    <label class="form-label" for="single">Single</label>
+                </div>
+                <div>
+                    <input  type="radio" name="malt" id="blended" value="blended" required>
+                    <label class="form-label" for="blended">Blended</label>
+                </div>
+
+                <label class="form-label" for="abv">Abv%</label>
+                <input type="text" class="form-control col-1" name="abv" id="abv"  value="{{whiskey.abv}}">
+
+                <label class="form-label" for="rating">Rating</label>
+                <select class="form-control" name="rating" id="rating">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+                <div>
+                    <label class="form-label" for="date_tasted">Date Tasted</label>
+                    <input class="form-control" type="date" name="date_tasted" id="date_tasted">
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-warning mt-3">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

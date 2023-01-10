@@ -1,0 +1,50 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <title>{{whiskey.name}}</title>
+</head>
+<body class="bg-light bg-gradient">
+    <div class="d-flex flex-row justify-content-between bg-warning bg-gradient   mb-5">
+        <img class="me-3" height = 80px src="{{url_for('static', filename='Glencairn-glass.svg')}}" alt="dram"/>
+        <div>
+            <h1 class="text-dark mt-3">Whiskey Log</h1>
+        </div>
+        <div>
+            <a class="m-3 text-bold btn btn-outline-dark fw-bold" href="/whiskeys/{{session['id']}}">Home</a>
+            <a class="m-3 text-bold btn btn-outline-dark fw-bold" href="/logout">Logout</a>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center">
+        <div class=" col-4 bg-dark bg-gradient text-warning border border-warning border-3 rounded">
+            <h1 class="bg-warning text-dark"><img class="me-3" height = 50px src="{{url_for('static', filename='Glencairn-glass.svg')}}" alt="dram"/>{{whiskey.name}}</h1>
+            <div class="ms-3">
+                <h5>Distiller:</h5>
+                <p>{{whiskey.distiller}}</p>
+            </div>
+            <div class="ms-3">
+                <h5>Malt:</h5>
+                <p>{{whiskey.malt}}</p>
+            </div>
+            <div class="ms-3">
+                <h5>ABV(%):</h5>
+                <p>{{whiskey.abv}}</p>
+            </div>
+            <div class="ms-3">
+                <h5>Rating:</h5>
+                <p>{{whiskey.rating}}</p>
+            </div>
+            <div class="ms-3">
+                <h5>Date tasted:</h5>
+                <p>{{whiskey.date_tasted}}</p>
+            </div>
+            <div class="ms-3">
+                <h5>Added by:</h5>
+                <p>{{whiskey.creator.fname}} {{whiskey.creator.lname}} </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
